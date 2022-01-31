@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val navigator = AppNavigator(this, R.id.container)
 
     private lateinit var binding: ActivityMainBinding
-    private val presenter by moxyPresenter { MainPresenter(router, UsersScreens()) }
+    private val presenter by moxyPresenter { MainPresenter(router, UsersScreens()) }//FIXME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
