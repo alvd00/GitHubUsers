@@ -8,13 +8,14 @@ import com.example.githubusers.R
 import com.example.githubusers.databinding.ActivityMainBinding
 import com.example.githubusers.presenter.MainPresenter
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity() {
     private val navigator = AppNavigator(this, R.id.container)
 
     private lateinit var binding: ActivityMainBinding
-    private val presenter by moxyPresenter { MainPresenter(router, UsersScreens()) }//FIXME
+    private val presenter by moxyPresenter { MainPresenter(router, UsersScreens()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,6 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        presenter.backClicked()
+        presenter.back()
     }
 }
