@@ -1,3 +1,7 @@
 package com.example.githubusers.presenter
 
-data class GitUser(val user_login:String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+class GitUser(val login: String) : Parcelable

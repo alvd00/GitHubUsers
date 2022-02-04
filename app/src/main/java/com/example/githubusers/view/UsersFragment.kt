@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.App
-import com.example.githubusers.App.Navigator.router
 import com.example.githubusers.databinding.FragmentUsersBinding
 import com.example.githubusers.model.GitUsersRepo
 import com.example.githubusers.presenter.UsersPresenter
@@ -24,7 +23,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButton {
     private val binding get() = _binding!!
 
     private val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(GitUsersRepo(), router, UsersScreens())
+        UsersPresenter(GitUsersRepo(), App.instance.router, UsersScreens())
     }
     var adapter: UsersRVAdapter? = null
 
@@ -54,5 +53,5 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButton {
         adapter?.notifyDataSetChanged()
     }
 
-    override fun backPressed() = presenter.backPressed()
+    override fun back() = presenter.backPressed()
 }

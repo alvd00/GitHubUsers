@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.githubusers.App.Navigator.router
+import com.example.githubusers.App
 import com.example.githubusers.databinding.FragmentLoginBinding
 import com.example.githubusers.model.GitUsersRepo
 import com.example.githubusers.presenter.GitUser
@@ -19,7 +19,7 @@ class LoginFragment : MvpAppCompatFragment(), BackButton, UsersView {
     private val binding get() = _binding!!
 
     private val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(GitUsersRepo(), router, UsersScreens())
+        UsersPresenter(GitUsersRepo(), App.instance.router, UsersScreens())
     }
 
     override fun onCreateView(
@@ -40,14 +40,14 @@ class LoginFragment : MvpAppCompatFragment(), BackButton, UsersView {
         private const val LOGIN = "login"
         fun newInstance(user: GitUser): MvpAppCompatFragment {
             val bundle = Bundle()
-            bundle.putString(LOGIN, user.user_login)
+            bundle.putString(LOGIN, user.login)
             return LoginFragment().apply {
                 arguments = bundle
             }
         }
     }
 
-    override fun backPressed() = presenter.backPressed()
+    override fun back() = presenter.backPressed()
 
     override fun init() {
         arguments?.let {

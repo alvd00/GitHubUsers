@@ -1,6 +1,7 @@
 package com.example.githubusers.presenter
 
 import com.example.githubusers.model.GitUsersRepo
+import com.example.githubusers.view.IItemView
 import com.example.githubusers.view.IScreens
 import com.example.githubusers.view.IUserView
 import com.github.terrakok.cicerone.Router
@@ -13,13 +14,14 @@ class UsersPresenter(
 ) :
     MvpPresenter<UsersView>() {
     class UsersListPresenter : IUserListPresenter {
-        override  var itemClickListener: ((IUserView) -> Unit)? = null
 
         val users = mutableListOf<GitUser>()
+
+        override var itemClickListener: ((IUserView) -> Unit)? = null
         override fun getCount() = users.size
         override fun bindView(view: IUserView) {
             val user = users[view.posit]
-            view.setLogin(user.user_login)
+            view.setLogin(user.login)
         }
     }
 
